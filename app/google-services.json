@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "179160643632",
+    "project_id": "agenda-online-5e9d0",
+    "storage_bucket": "agenda-online-5e9d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179160643632:android:9f2e6da08743638c9155f5",
+        "android_client_info": {
+          "package_name": "com.example.agenda_online"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd3H9iYmfaKsjYNaz1Gx3m0zte2d8dh2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
