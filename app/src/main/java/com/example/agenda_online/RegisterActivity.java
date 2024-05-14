@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
         else if (TextUtils.isEmpty(confirmarpassword)) {
             Toast.makeText(this, "Confirme contaseña", Toast.LENGTH_SHORT).show();
         }
-        else if (!password.equals(confirmarpassword)) {
+        else if (!password.equals(password)) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
         }
         else {
