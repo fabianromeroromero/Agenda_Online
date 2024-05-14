@@ -47,10 +47,11 @@ public class RegisterActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
 
+        // Configura la barra de acción (ActionBar)
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Registar");
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true); // Habilita el botón de "Atrás" en la barra de acción
+        actionBar.setDisplayShowHomeEnabled(true); // Habilita mostrar el ícono de la aplicación en la barra de acción
 
         edtNombreUser = findViewById(R.id.edtNombreUser);
         edtEmailUser = findViewById(R.id.edtEmailUser);
@@ -63,8 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(RegisterActivity.this);
         progressDialog.setTitle("Espere por favor");
-        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCanceledOnTouchOutside(false); // Evita que se cancele al tocar fuera del diálogo
 
+        // Configura el listener de clics para el botón de registro
         btnNewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        // Configura el listener de clics para el TextView de "Ya tengo cuenta"
         txtTengoCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,12 +84,14 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    // Método para validar los datos ingresados por el usuario
     private void validarDatos(){
         nombre = edtNombreUser.getText().toString();
         correo = edtEmailUser.getText().toString();
         password = edtPasswordUser.getText().toString();
         confirmarpassword = edtPasswordConfir.getText().toString();
 
+        // Validaciones de los datos ingresados
         if (TextUtils.isEmpty(nombre)){
             Toast.makeText(this, "Ingrese nombre", Toast.LENGTH_SHORT).show();
         }
@@ -103,30 +108,32 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
         }
         else {
-            crearCuenta();
+            crearCuenta(); // Llama al método para crear la cuenta de usuario
         }
     }
 
+    // Método para crear la cuenta de usuario en Firebase
     private void crearCuenta() {
         progressDialog.setMessage("Creando su cuenta");
-        progressDialog.show();
+        progressDialog.show(); // Muestra el ProgressDialog
 
-        //Crear un usuario en Firebase
+        // Crea un usuario en Firebase Authentication
         firebaseAuth.createUserWithEmailAndPassword(correo, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        GuardarInformacion();
+                        GuardarInformacion(); // Llama al método para guardar la información del usuario
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        progressDialog.dismiss();
+                        progressDialog.dismiss(); // Descarta el ProgressDialog
                         Toast.makeText(RegisterActivity.this, "correo ya existente"+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+    // Método para guardar la información del usuario en Firebase Realtime Database
     private void GuardarInformacion() {
         progressDialog.setMessage("Guardondo su informacion");
         progressDialog.dismiss();
@@ -134,12 +141,14 @@ public class RegisterActivity extends AppCompatActivity {
         //Obtener la identificacion de usuario actual
         String uid= firebaseAuth.getUid();
 
+        // Crea un HashMap para almacenar los datos del usuario
         HashMap<String, String> Datos = new HashMap<>();
         Datos.put("uid", uid);
         Datos.put("correo", correo);
         Datos.put("nombres", nombre);
         Datos.put("password", password);
 
+        // Obtiene una referencia a la base de datos de Firebase y guarda los datos del usuario
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("usuarios");
         databaseReference.child(uid)
                 .setValue(Datos)
@@ -161,9 +170,10 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
+    // Método que maneja el comportamiento del botón de "Atrás" en la barra de acción
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+        onBackPressed(); // Llama al método onBackPressed() para manejar la navegación hacia atrás
         return super.onSupportNavigateUp();
     }
 }

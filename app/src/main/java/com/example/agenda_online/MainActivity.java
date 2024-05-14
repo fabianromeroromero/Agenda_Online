@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         btn_Login = findViewById(R.id.btn_Login);
         btn_Register = findViewById(R.id.btn_Register);
 
+        // Configura el listener de clics para el botón de inicio de sesión
         btn_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Configura el listener de clics para el botón de registro
         btn_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +41,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
-
 }
