@@ -54,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         edtNombreUser = findViewById(R.id.edtNombreUser);
         edtEmailUser = findViewById(R.id.edtEmailUser);
-        edtPasswordUser = findViewById(R.id.edtNombreUser);
+        edtPasswordUser = findViewById(R.id.edtPasswordUser);
         edtPasswordConfir = findViewById(R.id.edtPasswordConfir);
         btnNewRegister = findViewById(R.id.btnNewRegister);
         txtTengoCuenta = findViewById(R.id.txtTengoCuenta);
@@ -99,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
         else if (TextUtils.isEmpty(confirmarpassword)) {
             Toast.makeText(this, "Confirme contaseña", Toast.LENGTH_SHORT).show();
         }
-        else if (!password.equals(password)) {
+        else if (!password.equals(confirmarpassword)) {
             Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -122,7 +122,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         progressDialog.dismiss();
-                        Toast.makeText(RegisterActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "correo ya existente"+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -156,7 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         progressDialog.dismiss();
-                        Toast.makeText(RegisterActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "mal"+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
