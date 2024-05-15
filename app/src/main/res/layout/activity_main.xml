@@ -13,6 +13,7 @@
         android:layout_margin="20sp"
         android:gravity="center"
         android:orientation="vertical">
+
         <ImageView
             android:layout_width="160dp"
             android:layout_height="160dp"

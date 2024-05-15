@@ -21,6 +21,14 @@
         android:text="Registrarse"
         android:layout_marginBottom="10dp"/>
 
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="20sp"
+        android:src="@drawable/register_icono"
+        app:tint="@color/my_secondary"/>
+
     <EditText
         android:id="@+id/edtNombreUser"
         android:layout_width="match_parent"
@@ -78,7 +86,6 @@
         android:textSize="16sp"
         android:background="@drawable/round_back_white" />
 
-
     <Button
         android:id="@+id/btnNewRegister"
         android:layout_width="match_parent"
@@ -99,6 +106,5 @@
         android:gravity="center"
         android:text="Tengo una cuenta"
         android:textSize="18sp" />
-
 
 </LinearLayout>
