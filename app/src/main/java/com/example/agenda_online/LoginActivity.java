@@ -2,12 +2,15 @@ package com.example.agenda_online;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +37,8 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView txtNoTengoCuenta;
 
+    ImageButton viewPassword;
+
     ProgressDialog progressDialog;
 
     FirebaseAuth firebaseAuth;
@@ -57,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         contrasenaLogin = findViewById(R.id.contrasenaLogin);
         btnLogin = findViewById(R.id.btnLogin);
         txtNoTengoCuenta = findViewById(R.id.txtNoTengoCuenta);
+        viewPassword = findViewById(R.id.viewPassword);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -79,12 +85,25 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         //Accion del ojo
-        imgButtonPassword.setOnClickListener(new View.OnClickListener(){
+        viewPassword.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 onClickTogglePassword();
             }
         });
+    }
+
+    //Funcion para ocultar y visualizar la clave
+    private void onClickTogglePassword() {
+        if (contrasenaLogin.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+            contrasenaLogin.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            contrasenaLogin.setTypeface(Typeface.DEFAULT); // Restaurar el tipo de fuente predeterminado
+            viewPassword.setImageResource(android.R.drawable.ic_menu_view);
+        } else {
+            contrasenaLogin.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            contrasenaLogin.setTypeface(Typeface.DEFAULT); // Restaurar el tipo de fuente predeterminado
+            viewPassword.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
+        }
     }
 
     private void validardatos() {
